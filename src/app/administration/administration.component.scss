@@ -1,0 +1,139 @@
+.main-content {
+  transition: var(--transition);
+  overflow: hidden;
+  background-color: #fafafa;
+  min-height: 100vh;
+  padding: {
+    right: 30px;
+    left: 280px;
+    top: 120px;
+  };
+  .listing-area {
+    background-color: var(--whiteColor);
+    box-shadow: 1px 5px 24px 0 rgba(68, 102, 242, .05);
+    padding: 25px 20px 0;
+    border-radius: 5px;
+    margin-bottom: 30px;
+
+    .pagination-area {
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+  }
+  .single-listings-box {
+    .listings-footer {
+      border-top: 1px solid #eeeeee;
+      padding: 20px;
+
+      .default-btn {
+        padding: {
+          top: 11px;
+          bottom: 11px;
+        };
+      }
+    }
+  }
+  .copyrights-area {
+    padding: {
+      top: 5px;
+      bottom: 30px;
+    };
+    p {
+      line-height: initial;
+      margin-bottom: 0;
+
+      i {
+        position: relative;
+        left: 0;
+        top: 1px;
+      }
+      a {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* Max width 767px */
+@media only screen and (max-width: 767px) {
+
+  .main-content {
+    padding-top: 110px;
+    padding: {
+      right: 15px;
+      left: 15px;
+    };
+    .mean-container {
+      a {
+        &.meanmenu-reveal {
+          padding-top: 0;
+          margin-top: -5px;
+        }
+      }
+    }
+    .listing-area {
+      .nav {
+        .nav-item {
+          margin: {
+            bottom: 15px;
+            right: 15px;
+          };
+          .nav-link {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  .main-content {
+    padding-top: 110px;
+    padding: {
+      right: 15px;
+      left: 15px;
+    };
+  }
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .main-content {
+    padding-top: 110px;
+    padding: {
+      right: 15px;
+      left: 15px;
+    };
+  }
+}
+
+/* Min width 1200px to Max width 1355px */
+@media only screen and (min-width: 1200px) and (max-width: 1355px) {
+
+  .main-content {
+    .listing-area {
+      .row {
+        .col-xl-4 {
+          flex: 0 0 50%;
+          max-width: 50%;
+        }
+      }
+    }
+  }
+}
+
+/* Min width 1550px */
+@media only screen and (min-width: 1550px) {
+
+
+
+}

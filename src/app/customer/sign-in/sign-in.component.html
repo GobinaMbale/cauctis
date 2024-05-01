@@ -1,0 +1,96 @@
+<!-- Start Login & Register Modal -->
+<div
+  class="modal fade loginRegisterModal"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="close" (click)="closeSigninSignupPopup()">
+        <i class='bx bx-x'></i>
+      </button>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            (click)="switchTab($event, 'tab1')"
+            [ngClass]="{'active': currentTab === 'tab1'}"
+          >
+            Se connecter
+          </button>
+        </li>
+        <li class="nav-item">
+          <button
+            class="nav-link"
+            (click)="switchTab($event, 'tab2')"
+            [ngClass]="{'active': currentTab === 'tab2'}"
+          >
+            S'inscrire
+          </button>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" *ngIf="currentTab === 'tab1'">
+          <div class="vesax-login">
+            <!--<div class="login-with-account">
+              <span>Login with</span>
+              <ul>
+                <li><a href="#" class="facebook"><i class='bx bxl-facebook'></i> Facebook</a></li>
+                <li><a href="#" class="twitter"><i class='bx bxl-twitter'></i> Twitter</a></li>
+              </ul>
+            </div>
+            <span class="sub-title"><span>Se connecter</span></span>-->
+            <form [formGroup]="formLogin" class="was-validated">
+              <div class="form-group">
+                <label for="username">Adresse email ou Numero de telephone <span class="text-danger">*</span></label>
+                <input required id="username" type="text" placeholder="Adresse email ou Numero de telephone" class="form-control" formControlName="username">
+              </div>
+              <div class="form-group">
+                <label for="loginPassword">Mot de passe <span class="text-danger">*</span></label>
+                <input required id="loginPassword" type="password" placeholder="Mot de passe" class="form-control" formControlName="password">
+              </div>
+              <button type="submit" [disabled]="onClickButton || formLogin.invalid" (click)="login()">Se connecter Maintenant</button>
+            </form>
+            <span class="dont-account">Vous n'avez pas encore de compte ? <a class="link-pointer"
+                                                                             (click)="switchTab($event, 'tab2')">S'inscrire maintenant</a></span>
+          </div>
+        </div>
+        <div class="tab-pane fade show active" *ngIf="currentTab === 'tab2'">
+          <div class="vesax-register">
+            <!--<div class="register-with-account">
+              <span>Register with</span>
+              <ul>
+                <li><a href="#" class="facebook"><i class='bx bxl-facebook'></i> Facebook</a></li>
+                <li><a href="#" class="twitter"><i class='bx bxl-twitter'></i> Twitter</a></li>
+              </ul>
+            </div>
+            <span class="sub-title"><span>S'inscrire</span></span>-->
+            <form [formGroup]="formRegister" class="was-validated">
+              <div class="form-group">
+                <label for="name">Nom et prenom <span class="text-danger">*</span></label>
+                <input required id="name" type="text" placeholder="Nom et prénom(s)" class="form-control" formControlName="name">
+              </div>
+              <div class="form-group">
+                <label for="telephone">Numero de telephone <span class="text-danger">*</span></label>
+                <input required id="telephone" type="number" placeholder="Numero de telephone" class="form-control" formControlName="phoneNumber">
+              </div>
+              <div class="form-group">
+                <label for="email">Adresse email <span class="text-danger">*</span></label>
+                <input required id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+              </div>
+              <div class="form-group">
+                <label for="password">Mot de passe <span class="text-danger">*</span></label>
+                <input required id="password" type="password" placeholder="Mot de passe" class="form-control" formControlName="password">
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirmer le mot de passe <span class="text-danger">*</span></label>
+                <input required id="confirmPassword" type="password" placeholder="Confirmer le mot de passe" class="form-control" formControlName="confirmPassword">
+              </div>
+              <button type="submit" [disabled]="onClickButton || formRegister.invalid" (click)="register()">Creer son compte</button>
+            </form>
+            <span class="already-account">Vous disposez déjà d'un compte ? <a class="link-pointer" (click)="switchTab($event, 'tab1')">Se connecter</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-backdrop fade show"></div>
+</div>
