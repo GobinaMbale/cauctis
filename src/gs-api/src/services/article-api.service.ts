@@ -28,7 +28,7 @@ class ArticleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: ArticleRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: ArticleRequest): __Observable<__StrictHttpResponse<ArticleRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -46,7 +46,7 @@ class ArticleApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<ArticleRequest>;
       })
     );
   }
@@ -54,9 +54,9 @@ class ArticleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: ArticleRequest): __Observable<{}> {
+  create(body?: ArticleRequest): __Observable<ArticleRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as ArticleRequest)
     );
   }
 

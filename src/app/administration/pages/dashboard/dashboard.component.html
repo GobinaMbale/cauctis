@@ -1,0 +1,28 @@
+<!-- Breadcrumb Area -->
+<div class="breadcrumb-area" *ngFor="let Content of breadcrumb;">
+  <h1>{{Content.title}}</h1>
+  <ol class="breadcrumb">
+    <li class="item"><a routerLink="/dashboard">Accueil</a></li>
+    <li class="item">{{Content.subTitle}}</li>
+  </ol>
+</div>
+<!-- End Breadcrumb Area -->
+
+<!-- Start -->
+<div class="notification-alert alert alert-success alert-dismissible fade show" role="alert">
+  Bienvenue <strong>{{data.name.toUpperCase()}}</strong> !!!
+</div>
+<!-- End -->
+
+<!-- Start -->
+<app-stats></app-stats>
+<!-- End -->
+
+<!-- Start -->
+<div class="row">
+  <div class="col-lg-6 col-md-12">
+    <app-recent-activities></app-recent-activities>
+  </div>
+</div>
+<!-- End -->
+<!-- End Main Content Wrapper Area -->

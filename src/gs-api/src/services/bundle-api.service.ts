@@ -9,7 +9,6 @@ import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { BundleRequest } from '../models/bundle-request';
 import { PageBundleRequest } from '../models/page-bundle-request';
-import { Bundle } from '../models/bundle';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,7 +32,7 @@ class BundleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: BundleRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: BundleRequest): __Observable<__StrictHttpResponse<BundleRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -51,7 +50,7 @@ class BundleApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<BundleRequest>;
       })
     );
   }
@@ -59,9 +58,9 @@ class BundleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: BundleRequest): __Observable<{}> {
+  create(body?: BundleRequest): __Observable<BundleRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as BundleRequest)
     );
   }
 
@@ -69,7 +68,7 @@ class BundleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createWithAuctionResponse(body?: BundleRequest): __Observable<__StrictHttpResponse<{}>> {
+  createWithAuctionResponse(body?: BundleRequest): __Observable<__StrictHttpResponse<BundleRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -87,7 +86,7 @@ class BundleApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<BundleRequest>;
       })
     );
   }
@@ -95,9 +94,9 @@ class BundleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createWithAuction(body?: BundleRequest): __Observable<{}> {
+  createWithAuction(body?: BundleRequest): __Observable<BundleRequest> {
     return this.createWithAuctionResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as BundleRequest)
     );
   }
 
@@ -105,7 +104,7 @@ class BundleApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByStructureListResponse(id: number): __Observable<__StrictHttpResponse<{}>> {
+  findByStructureListResponse(id: number): __Observable<__StrictHttpResponse<Array<BundleRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -123,7 +122,7 @@ class BundleApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BundleRequest>>;
       })
     );
   }
@@ -131,9 +130,9 @@ class BundleApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByStructureList(id: number): __Observable<{}> {
+  findByStructureList(id: number): __Observable<Array<BundleRequest>> {
     return this.findByStructureListResponse(id).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BundleRequest>)
     );
   }
 
@@ -213,7 +212,7 @@ class BundleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  findByWarehouseListResponse(body?: BundleRequest): __Observable<__StrictHttpResponse<{}>> {
+  findByWarehouseListResponse(body?: BundleRequest): __Observable<__StrictHttpResponse<Array<BundleRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -231,7 +230,7 @@ class BundleApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BundleRequest>>;
       })
     );
   }
@@ -239,9 +238,9 @@ class BundleApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  findByWarehouseList(body?: BundleRequest): __Observable<{}> {
+  findByWarehouseList(body?: BundleRequest): __Observable<Array<BundleRequest>> {
     return this.findByWarehouseListResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BundleRequest>)
     );
   }
 
@@ -249,7 +248,7 @@ class BundleApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByIdResponse(id: number): __Observable<__StrictHttpResponse<Bundle>> {
+  findByIdResponse(id: number): __Observable<__StrictHttpResponse<BundleRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -267,7 +266,7 @@ class BundleApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Bundle>;
+        return _r as __StrictHttpResponse<BundleRequest>;
       })
     );
   }
@@ -275,9 +274,9 @@ class BundleApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findById(id: number): __Observable<Bundle> {
+  findById(id: number): __Observable<BundleRequest> {
     return this.findByIdResponse(id).pipe(
-      __map(_r => _r.body as Bundle)
+      __map(_r => _r.body as BundleRequest)
     );
   }
 }

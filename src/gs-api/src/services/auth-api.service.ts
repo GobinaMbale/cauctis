@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { JwtAuthenticationResponse } from '../models/jwt-authentication-response';
 import { LoginRequest } from '../models/login-request';
 import { SignUpRequest } from '../models/sign-up-request';
 @Injectable({
@@ -27,7 +28,7 @@ class AuthApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  authenticateUserResponse(body?: LoginRequest): __Observable<__StrictHttpResponse<{}>> {
+  authenticateUserResponse(body?: LoginRequest): __Observable<__StrictHttpResponse<JwtAuthenticationResponse>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -45,7 +46,7 @@ class AuthApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<JwtAuthenticationResponse>;
       })
     );
   }
@@ -53,9 +54,9 @@ class AuthApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  authenticateUser(body?: LoginRequest): __Observable<{}> {
+  authenticateUser(body?: LoginRequest): __Observable<JwtAuthenticationResponse> {
     return this.authenticateUserResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as JwtAuthenticationResponse)
     );
   }
 

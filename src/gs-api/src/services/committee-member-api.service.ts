@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { UserRequest } from '../models/user-request';
 import { SignUpRequest } from '../models/sign-up-request';
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,7 @@ class CommitteeMemberApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: SignUpRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: SignUpRequest): __Observable<__StrictHttpResponse<UserRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -43,7 +44,7 @@ class CommitteeMemberApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<UserRequest>;
       })
     );
   }
@@ -51,9 +52,9 @@ class CommitteeMemberApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: SignUpRequest): __Observable<{}> {
+  create(body?: SignUpRequest): __Observable<UserRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as UserRequest)
     );
   }
 }

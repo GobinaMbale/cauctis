@@ -59,7 +59,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/UserRequest"
             }
           }
         }
@@ -81,7 +81,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/ArticleRequest"
             }
           }
         }
@@ -148,7 +148,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "boolean"
             }
           }
         }
@@ -170,7 +170,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/AuctionRegistrationRequest"
             }
           }
         }
@@ -198,7 +198,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/AuctionRequest"
             }
           }
         }
@@ -229,7 +229,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BundleRequest"
+              }
             }
           }
         }
@@ -251,7 +254,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/AuctionRequest"
             }
           }
         }
@@ -278,7 +281,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BundleRequest"
+              }
             }
           }
         }
@@ -356,7 +362,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/JwtAuthenticationResponse"
             }
           }
         }
@@ -392,7 +398,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/BidRequest"
             }
           }
         }
@@ -414,7 +420,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BidRequest"
+              }
             }
           }
         }
@@ -441,7 +450,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BidRequest"
+              }
             }
           }
         }
@@ -462,7 +474,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BidRequest"
+              }
             }
           }
         }
@@ -532,7 +547,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/BidRequest"
             }
           }
         }
@@ -554,7 +569,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/BundleRequest"
             }
           }
         }
@@ -576,7 +591,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/BundleRequest"
             }
           }
         }
@@ -597,7 +612,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BundleRequest"
+              }
             }
           }
         }
@@ -661,7 +679,44 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/BundleRequest"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bundle-service/upload-picture" : {
+      "put" : {
+        "tags" : [ "bundle-api" ],
+        "operationId" : "addBundlePictures",
+        "consumes" : [ "multipart/form-data" ],
+        "parameters" : [ {
+          "name" : "files",
+          "in" : "query",
+          "required" : true,
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/MultipartFile"
+          },
+          "collectionFormat" : "multi"
+        }, {
+          "name" : "id",
+          "in" : "query",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "type" : "string"
+              }
             }
           }
         }
@@ -682,7 +737,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/Bundle"
+              "$ref" : "#/definitions/BundleRequest"
             }
           }
         }
@@ -704,7 +759,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/UserRequest"
             }
           }
         }
@@ -727,7 +782,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Notification"
+                "$ref" : "#/definitions/NotificationRequest"
               }
             }
           }
@@ -751,7 +806,7 @@
             "schema" : {
               "type" : "array",
               "items" : {
-                "$ref" : "#/definitions/Notification"
+                "$ref" : "#/definitions/NotificationRequest"
               }
             }
           }
@@ -799,7 +854,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "$ref" : "#/definitions/Payment"
+              "$ref" : "#/definitions/PaymentRequest"
             }
           }
         }
@@ -820,7 +875,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "object",
+              "additionalProperties" : {
+                "type" : "object"
+              }
             }
           }
         }
@@ -842,7 +900,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/StructureRequest"
             }
           }
         }
@@ -884,7 +942,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/StructureRequest"
             }
           }
         }
@@ -906,7 +964,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/TypeStructureRequest"
             }
           }
         }
@@ -928,7 +986,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/UserRequest"
             }
           }
         }
@@ -950,7 +1008,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/UserRequest"
             }
           }
         }
@@ -971,7 +1029,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/SignUpRequest"
             }
           }
         }
@@ -993,7 +1051,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "$ref" : "#/definitions/WarehouseRequest"
             }
           }
         }
@@ -1015,7 +1073,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/WarehouseRequest"
+              }
             }
           }
         }
@@ -1036,7 +1097,10 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/StructureWarehouseRequest"
+              }
             }
           }
         }
@@ -1083,7 +1147,7 @@
           "200" : {
             "description" : "successful operation",
             "schema" : {
-              "type" : "object"
+              "type" : "string"
             }
           }
         }
@@ -1627,6 +1691,20 @@
         }
       }
     },
+    "JwtAuthenticationResponse" : {
+      "type" : "object",
+      "properties" : {
+        "accessToken" : {
+          "type" : "string"
+        },
+        "data" : {
+          "$ref" : "#/definitions/SignUpRequest"
+        },
+        "tokenType" : {
+          "type" : "string"
+        }
+      }
+    },
     "LoginRequest" : {
       "type" : "object",
       "properties" : {
@@ -1638,7 +1716,7 @@
         }
       }
     },
-    "Notification" : {
+    "NotificationRequest" : {
       "type" : "object",
       "properties" : {
         "id" : {
@@ -1656,10 +1734,6 @@
         },
         "active" : {
           "type" : "boolean"
-        },
-        "createdAt" : {
-          "type" : "string",
-          "format" : "date-time"
         }
       }
     },
@@ -1998,12 +2072,12 @@
         "unpaged" : {
           "type" : "boolean"
         },
-        "paged" : {
-          "type" : "boolean"
-        },
         "pageNumber" : {
           "type" : "integer",
           "format" : "int32"
+        },
+        "paged" : {
+          "type" : "boolean"
         },
         "pageSize" : {
           "type" : "integer",

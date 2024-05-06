@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { WarehouseRequest } from '../models/warehouse-request';
+import { StructureWarehouseRequest } from '../models/structure-warehouse-request';
 import { PageStructureWarehouseRequest } from '../models/page-structure-warehouse-request';
 @Injectable({
   providedIn: 'root',
@@ -30,7 +31,7 @@ class WarehouseApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: WarehouseRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: WarehouseRequest): __Observable<__StrictHttpResponse<WarehouseRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -48,7 +49,7 @@ class WarehouseApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<WarehouseRequest>;
       })
     );
   }
@@ -56,9 +57,9 @@ class WarehouseApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: WarehouseRequest): __Observable<{}> {
+  create(body?: WarehouseRequest): __Observable<WarehouseRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as WarehouseRequest)
     );
   }
 
@@ -66,7 +67,7 @@ class WarehouseApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  findByStructureAndAuctionResponse(body?: WarehouseRequest): __Observable<__StrictHttpResponse<{}>> {
+  findByStructureAndAuctionResponse(body?: WarehouseRequest): __Observable<__StrictHttpResponse<Array<WarehouseRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -84,7 +85,7 @@ class WarehouseApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<WarehouseRequest>>;
       })
     );
   }
@@ -92,9 +93,9 @@ class WarehouseApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  findByStructureAndAuction(body?: WarehouseRequest): __Observable<{}> {
+  findByStructureAndAuction(body?: WarehouseRequest): __Observable<Array<WarehouseRequest>> {
     return this.findByStructureAndAuctionResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<WarehouseRequest>)
     );
   }
 
@@ -102,7 +103,7 @@ class WarehouseApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByStructureListResponse(id: number): __Observable<__StrictHttpResponse<{}>> {
+  findByStructureListResponse(id: number): __Observable<__StrictHttpResponse<Array<StructureWarehouseRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -120,7 +121,7 @@ class WarehouseApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<StructureWarehouseRequest>>;
       })
     );
   }
@@ -128,9 +129,9 @@ class WarehouseApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByStructureList(id: number): __Observable<{}> {
+  findByStructureList(id: number): __Observable<Array<StructureWarehouseRequest>> {
     return this.findByStructureListResponse(id).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<StructureWarehouseRequest>)
     );
   }
 
@@ -179,7 +180,7 @@ class WarehouseApiService extends __BaseService {
    *
    * @return successful operation
    */
-  addWarehousePictureResponse(params: WarehouseApiService.AddWarehousePictureParams): __Observable<__StrictHttpResponse<{}>> {
+  addWarehousePictureResponse(params: WarehouseApiService.AddWarehousePictureParams): __Observable<__StrictHttpResponse<string>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -192,13 +193,13 @@ class WarehouseApiService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
+        responseType: 'text'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<string>;
       })
     );
   }
@@ -211,9 +212,9 @@ class WarehouseApiService extends __BaseService {
    *
    * @return successful operation
    */
-  addWarehousePicture(params: WarehouseApiService.AddWarehousePictureParams): __Observable<{}> {
+  addWarehousePicture(params: WarehouseApiService.AddWarehousePictureParams): __Observable<string> {
     return this.addWarehousePictureResponse(params).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as string)
     );
   }
 }

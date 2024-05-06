@@ -25,7 +25,7 @@ class TypeStructureApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: TypeStructureRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: TypeStructureRequest): __Observable<__StrictHttpResponse<TypeStructureRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -43,7 +43,7 @@ class TypeStructureApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<TypeStructureRequest>;
       })
     );
   }
@@ -51,9 +51,9 @@ class TypeStructureApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: TypeStructureRequest): __Observable<{}> {
+  create(body?: TypeStructureRequest): __Observable<TypeStructureRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as TypeStructureRequest)
     );
   }
 }

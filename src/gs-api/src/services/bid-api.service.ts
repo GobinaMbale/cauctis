@@ -33,7 +33,7 @@ class BidApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  acceptBidResponse(body?: BidRequest): __Observable<__StrictHttpResponse<{}>> {
+  acceptBidResponse(body?: BidRequest): __Observable<__StrictHttpResponse<BidRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -51,7 +51,7 @@ class BidApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<BidRequest>;
       })
     );
   }
@@ -59,9 +59,9 @@ class BidApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  acceptBid(body?: BidRequest): __Observable<{}> {
+  acceptBid(body?: BidRequest): __Observable<BidRequest> {
     return this.acceptBidResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as BidRequest)
     );
   }
 
@@ -69,7 +69,7 @@ class BidApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: BidRequestTwo): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: BidRequestTwo): __Observable<__StrictHttpResponse<Array<BidRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -87,7 +87,7 @@ class BidApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BidRequest>>;
       })
     );
   }
@@ -95,9 +95,9 @@ class BidApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: BidRequestTwo): __Observable<{}> {
+  create(body?: BidRequestTwo): __Observable<Array<BidRequest>> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BidRequest>)
     );
   }
 
@@ -110,7 +110,7 @@ class BidApiService extends __BaseService {
    *
    * @return successful operation
    */
-  findByStatusResponse(params: BidApiService.FindByStatusParams): __Observable<__StrictHttpResponse<{}>> {
+  findByStatusResponse(params: BidApiService.FindByStatusParams): __Observable<__StrictHttpResponse<Array<BidRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -129,7 +129,7 @@ class BidApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BidRequest>>;
       })
     );
   }
@@ -142,9 +142,9 @@ class BidApiService extends __BaseService {
    *
    * @return successful operation
    */
-  findByStatus(params: BidApiService.FindByStatusParams): __Observable<{}> {
+  findByStatus(params: BidApiService.FindByStatusParams): __Observable<Array<BidRequest>> {
     return this.findByStatusResponse(params).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BidRequest>)
     );
   }
 
@@ -152,7 +152,7 @@ class BidApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByBundleResponse(id: number): __Observable<__StrictHttpResponse<{}>> {
+  findByBundleResponse(id: number): __Observable<__StrictHttpResponse<Array<BidRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -170,7 +170,7 @@ class BidApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BidRequest>>;
       })
     );
   }
@@ -178,9 +178,9 @@ class BidApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByBundle(id: number): __Observable<{}> {
+  findByBundle(id: number): __Observable<Array<BidRequest>> {
     return this.findByBundleResponse(id).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BidRequest>)
     );
   }
 
@@ -271,7 +271,7 @@ class BidApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  rejectBidResponse(body?: BidRequest): __Observable<__StrictHttpResponse<{}>> {
+  rejectBidResponse(body?: BidRequest): __Observable<__StrictHttpResponse<BidRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -289,7 +289,7 @@ class BidApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<BidRequest>;
       })
     );
   }
@@ -297,9 +297,9 @@ class BidApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  rejectBid(body?: BidRequest): __Observable<{}> {
+  rejectBid(body?: BidRequest): __Observable<BidRequest> {
     return this.rejectBidResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as BidRequest)
     );
   }
 }

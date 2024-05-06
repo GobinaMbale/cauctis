@@ -7,7 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
-import { Notification } from '../models/notification';
+import { NotificationRequest } from '../models/notification-request';
 @Injectable({
   providedIn: 'root',
 })
@@ -26,7 +26,7 @@ class NotificationApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByStructureResponse(id: number): __Observable<__StrictHttpResponse<Array<Notification>>> {
+  findByStructureResponse(id: number): __Observable<__StrictHttpResponse<Array<NotificationRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -44,7 +44,7 @@ class NotificationApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Notification>>;
+        return _r as __StrictHttpResponse<Array<NotificationRequest>>;
       })
     );
   }
@@ -52,9 +52,9 @@ class NotificationApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByStructure(id: number): __Observable<Array<Notification>> {
+  findByStructure(id: number): __Observable<Array<NotificationRequest>> {
     return this.findByStructureResponse(id).pipe(
-      __map(_r => _r.body as Array<Notification>)
+      __map(_r => _r.body as Array<NotificationRequest>)
     );
   }
 
@@ -62,7 +62,7 @@ class NotificationApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findTaxpayerResponse(id: number): __Observable<__StrictHttpResponse<Array<Notification>>> {
+  findTaxpayerResponse(id: number): __Observable<__StrictHttpResponse<Array<NotificationRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -80,7 +80,7 @@ class NotificationApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Array<Notification>>;
+        return _r as __StrictHttpResponse<Array<NotificationRequest>>;
       })
     );
   }
@@ -88,9 +88,9 @@ class NotificationApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findTaxpayer(id: number): __Observable<Array<Notification>> {
+  findTaxpayer(id: number): __Observable<Array<NotificationRequest>> {
     return this.findTaxpayerResponse(id).pipe(
-      __map(_r => _r.body as Array<Notification>)
+      __map(_r => _r.body as Array<NotificationRequest>)
     );
   }
 }

@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { UserRequest } from '../models/user-request';
 import { SignUpRequest } from '../models/sign-up-request';
 @Injectable({
   providedIn: 'root',
@@ -27,7 +28,7 @@ class UserApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  registerUserResponse(body?: SignUpRequest): __Observable<__StrictHttpResponse<{}>> {
+  registerUserResponse(body?: SignUpRequest): __Observable<__StrictHttpResponse<UserRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -45,7 +46,7 @@ class UserApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<UserRequest>;
       })
     );
   }
@@ -53,9 +54,9 @@ class UserApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  registerUser(body?: SignUpRequest): __Observable<{}> {
+  registerUser(body?: SignUpRequest): __Observable<UserRequest> {
     return this.registerUserResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as UserRequest)
     );
   }
 
@@ -63,7 +64,7 @@ class UserApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  registerTaxPayerResponse(body?: SignUpRequest): __Observable<__StrictHttpResponse<{}>> {
+  registerTaxPayerResponse(body?: SignUpRequest): __Observable<__StrictHttpResponse<UserRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -81,7 +82,7 @@ class UserApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<UserRequest>;
       })
     );
   }
@@ -89,9 +90,9 @@ class UserApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  registerTaxPayer(body?: SignUpRequest): __Observable<{}> {
+  registerTaxPayer(body?: SignUpRequest): __Observable<UserRequest> {
     return this.registerTaxPayerResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as UserRequest)
     );
   }
 
@@ -99,7 +100,7 @@ class UserApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByIdResponse(id: number): __Observable<__StrictHttpResponse<{}>> {
+  findByIdResponse(id: number): __Observable<__StrictHttpResponse<SignUpRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -117,7 +118,7 @@ class UserApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<SignUpRequest>;
       })
     );
   }
@@ -125,9 +126,9 @@ class UserApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findById(id: number): __Observable<{}> {
+  findById(id: number): __Observable<SignUpRequest> {
     return this.findByIdResponse(id).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as SignUpRequest)
     );
   }
 }

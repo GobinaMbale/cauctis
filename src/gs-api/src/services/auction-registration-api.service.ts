@@ -26,7 +26,7 @@ class AuctionRegistrationApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  checkIfUserIsRegisteredResponse(body?: AuctionRegistrationRequest): __Observable<__StrictHttpResponse<{}>> {
+  checkIfUserIsRegisteredResponse(body?: AuctionRegistrationRequest): __Observable<__StrictHttpResponse<boolean>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -38,13 +38,13 @@ class AuctionRegistrationApiService extends __BaseService {
       {
         headers: __headers,
         params: __params,
-        responseType: 'json'
+        responseType: 'text'
       });
 
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return (_r as HttpResponse<any>).clone({ body: (_r as HttpResponse<any>).body === 'true' }) as __StrictHttpResponse<boolean>
       })
     );
   }
@@ -52,9 +52,9 @@ class AuctionRegistrationApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  checkIfUserIsRegistered(body?: AuctionRegistrationRequest): __Observable<{}> {
+  checkIfUserIsRegistered(body?: AuctionRegistrationRequest): __Observable<boolean> {
     return this.checkIfUserIsRegisteredResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as boolean)
     );
   }
 
@@ -62,7 +62,7 @@ class AuctionRegistrationApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: AuctionRegistrationRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: AuctionRegistrationRequest): __Observable<__StrictHttpResponse<AuctionRegistrationRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -80,7 +80,7 @@ class AuctionRegistrationApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<AuctionRegistrationRequest>;
       })
     );
   }
@@ -88,9 +88,9 @@ class AuctionRegistrationApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: AuctionRegistrationRequest): __Observable<{}> {
+  create(body?: AuctionRegistrationRequest): __Observable<AuctionRegistrationRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as AuctionRegistrationRequest)
     );
   }
 }

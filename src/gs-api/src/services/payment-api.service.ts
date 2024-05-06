@@ -8,7 +8,6 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { PaymentRequest } from '../models/payment-request';
-import { Payment } from '../models/payment';
 @Injectable({
   providedIn: 'root',
 })
@@ -63,7 +62,7 @@ class PaymentApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  webhookResponse(body?: {[key: string]: {}}): __Observable<__StrictHttpResponse<Payment>> {
+  webhookResponse(body?: {[key: string]: {}}): __Observable<__StrictHttpResponse<PaymentRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -81,7 +80,7 @@ class PaymentApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<Payment>;
+        return _r as __StrictHttpResponse<PaymentRequest>;
       })
     );
   }
@@ -89,9 +88,9 @@ class PaymentApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  webhook(body?: {[key: string]: {}}): __Observable<Payment> {
+  webhook(body?: {[key: string]: {}}): __Observable<PaymentRequest> {
     return this.webhookResponse(body).pipe(
-      __map(_r => _r.body as Payment)
+      __map(_r => _r.body as PaymentRequest)
     );
   }
 }

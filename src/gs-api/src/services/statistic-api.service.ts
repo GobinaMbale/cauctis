@@ -24,7 +24,7 @@ class StatisticApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  getStatStrutureResponse(id: number): __Observable<__StrictHttpResponse<{}>> {
+  getStatStrutureResponse(id: number): __Observable<__StrictHttpResponse<{[key: string]: {}}>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -42,7 +42,7 @@ class StatisticApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<{[key: string]: {}}>;
       })
     );
   }
@@ -50,9 +50,9 @@ class StatisticApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  getStatStruture(id: number): __Observable<{}> {
+  getStatStruture(id: number): __Observable<{[key: string]: {}}> {
     return this.getStatStrutureResponse(id).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as {[key: string]: {}})
     );
   }
 }

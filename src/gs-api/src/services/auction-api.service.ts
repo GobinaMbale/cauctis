@@ -38,7 +38,7 @@ class AuctionApiService extends __BaseService {
    *
    * @return successful operation
    */
-  addBundlesResponse(params: AuctionApiService.AddBundlesParams): __Observable<__StrictHttpResponse<{}>> {
+  addBundlesResponse(params: AuctionApiService.AddBundlesParams): __Observable<__StrictHttpResponse<AuctionRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -57,7 +57,7 @@ class AuctionApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<AuctionRequest>;
       })
     );
   }
@@ -70,9 +70,9 @@ class AuctionApiService extends __BaseService {
    *
    * @return successful operation
    */
-  addBundles(params: AuctionApiService.AddBundlesParams): __Observable<{}> {
+  addBundles(params: AuctionApiService.AddBundlesParams): __Observable<AuctionRequest> {
     return this.addBundlesResponse(params).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as AuctionRequest)
     );
   }
 
@@ -85,7 +85,7 @@ class AuctionApiService extends __BaseService {
    *
    * @return successful operation
    */
-  confirmBundlesResponse(params: AuctionApiService.ConfirmBundlesParams): __Observable<__StrictHttpResponse<{}>> {
+  confirmBundlesResponse(params: AuctionApiService.ConfirmBundlesParams): __Observable<__StrictHttpResponse<Array<BundleRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -104,7 +104,7 @@ class AuctionApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BundleRequest>>;
       })
     );
   }
@@ -117,9 +117,9 @@ class AuctionApiService extends __BaseService {
    *
    * @return successful operation
    */
-  confirmBundles(params: AuctionApiService.ConfirmBundlesParams): __Observable<{}> {
+  confirmBundles(params: AuctionApiService.ConfirmBundlesParams): __Observable<Array<BundleRequest>> {
     return this.confirmBundlesResponse(params).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BundleRequest>)
     );
   }
 
@@ -127,7 +127,7 @@ class AuctionApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: AuctionRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: AuctionRequest): __Observable<__StrictHttpResponse<AuctionRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -145,7 +145,7 @@ class AuctionApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<AuctionRequest>;
       })
     );
   }
@@ -153,9 +153,9 @@ class AuctionApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: AuctionRequest): __Observable<{}> {
+  create(body?: AuctionRequest): __Observable<AuctionRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as AuctionRequest)
     );
   }
 
@@ -168,7 +168,7 @@ class AuctionApiService extends __BaseService {
    *
    * @return successful operation
    */
-  findBundleByStructureResponse(params: AuctionApiService.FindBundleByStructureParams): __Observable<__StrictHttpResponse<{}>> {
+  findBundleByStructureResponse(params: AuctionApiService.FindBundleByStructureParams): __Observable<__StrictHttpResponse<Array<BundleRequest>>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -187,7 +187,7 @@ class AuctionApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<Array<BundleRequest>>;
       })
     );
   }
@@ -200,9 +200,9 @@ class AuctionApiService extends __BaseService {
    *
    * @return successful operation
    */
-  findBundleByStructure(params: AuctionApiService.FindBundleByStructureParams): __Observable<{}> {
+  findBundleByStructure(params: AuctionApiService.FindBundleByStructureParams): __Observable<Array<BundleRequest>> {
     return this.findBundleByStructureResponse(params).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as Array<BundleRequest>)
     );
   }
 

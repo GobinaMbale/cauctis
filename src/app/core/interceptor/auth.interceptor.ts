@@ -7,7 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import {LocalStorageEnum} from '../../shared/enum/local-storage.enum';
+import {LocalStorageEnum} from '../../shared/enums/local-storage.enum';
 import {SERVER_URL} from '../../app.constants';
 
 @Injectable()

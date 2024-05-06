@@ -28,7 +28,7 @@ class StructureApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  createResponse(body?: StructureRequest): __Observable<__StrictHttpResponse<{}>> {
+  createResponse(body?: StructureRequest): __Observable<__StrictHttpResponse<StructureRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -46,7 +46,7 @@ class StructureApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<StructureRequest>;
       })
     );
   }
@@ -54,9 +54,9 @@ class StructureApiService extends __BaseService {
    * @param body undefined
    * @return successful operation
    */
-  create(body?: StructureRequest): __Observable<{}> {
+  create(body?: StructureRequest): __Observable<StructureRequest> {
     return this.createResponse(body).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as StructureRequest)
     );
   }
 
@@ -100,7 +100,7 @@ class StructureApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findByIdResponse(id: number): __Observable<__StrictHttpResponse<{}>> {
+  findByIdResponse(id: number): __Observable<__StrictHttpResponse<StructureRequest>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -118,7 +118,7 @@ class StructureApiService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<{}>;
+        return _r as __StrictHttpResponse<StructureRequest>;
       })
     );
   }
@@ -126,9 +126,9 @@ class StructureApiService extends __BaseService {
    * @param id undefined
    * @return successful operation
    */
-  findById(id: number): __Observable<{}> {
+  findById(id: number): __Observable<StructureRequest> {
     return this.findByIdResponse(id).pipe(
-      __map(_r => _r.body as {})
+      __map(_r => _r.body as StructureRequest)
     );
   }
 }
