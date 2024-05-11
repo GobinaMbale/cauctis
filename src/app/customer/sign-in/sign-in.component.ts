@@ -24,6 +24,7 @@ export class SignInComponent implements OnDestroy {
               private userService: UserService) {}
 
   onClickButton = false;
+  error: string | null;
   subscription: Subscription;
   formLogin = this.fb.group({
     username: ['', [Validators.required]],
@@ -65,7 +66,8 @@ export class SignInComponent implements OnDestroy {
       },
       (err) => {
         this.onClickButton = false;
-        console.log(err);
+        this.error = 'Les identifiants sont incorrects'
+        setTimeout(() => this.error = null, 2000);
       }
     );
   }

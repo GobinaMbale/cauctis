@@ -13,7 +13,7 @@ export class HasAnyAutorityService {
   userIdentity: SignUpRequest;
   private authenticationState = new ReplaySubject<SignUpRequest | null>(1);
   private $currentUserCache?: Observable<SignUpRequest | null>;
-  authotiriesList: string[];
+  authotiriesList: string[] = [];
 
   constructor(
     private stateStorageService: StateStorageService,
@@ -38,8 +38,8 @@ export class HasAnyAutorityService {
         }),
         shareReplay()
       );
-      return this.$currentUserCache;
     }
+    return this.$currentUserCache;
   }
 
   hasAnyAuthority(authorithies: string[] | string): boolean {

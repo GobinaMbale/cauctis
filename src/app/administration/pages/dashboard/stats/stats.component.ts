@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Stats} from '../../../../shared/interface/stat.interface';
+import {Stats} from '../../../../shared/interfaces/stat.interface';
 
 @Component({
   selector: 'app-stats',

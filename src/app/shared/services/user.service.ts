@@ -12,6 +12,6 @@ export class UserService {
   constructor(private userApiService: UserApiService) { }
 
   register(body: SignUpRequest): Observable<UserRequest> {
-    return this.register(body);
+    return this.userApiService.registerUser(body);
   }
 }

@@ -1,0 +1,20 @@
+{
+  "sideMenu": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "structures": "Structures",
+    "profile_user": "My Profile",
+    "shops": "Shops",
+    "lots": "Lots",
+    "articles": "Articles",
+    "auctions": "Auctions",
+    "logout": "Logout"
+  },
+  "navBar": {
+    "home": "Home",
+    "auctions": "Auctions",
+    "shops": "Shops",
+    "about_us": "About Us",
+    "contact": "Contact"
+  }
+}

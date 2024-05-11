@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
-import {LocalStorageService, SessionStorageService} from 'ngx-webstorage';
 import {LocalStorageEnum} from '../../shared/enums/local-storage.enum';
 import {AuthApiService} from '../../../gs-api/src/services';
 import {LoginRequest} from '../../../gs-api/src/models/login-request';
@@ -13,15 +12,9 @@ import {map} from 'rxjs/operators';
 })
 export class AuthJwtService {
 
-  constructor(private $localStorage: LocalStorageService,
-              private router: Router,
-              private $sessionStorage: SessionStorageService,
+  constructor(private router: Router,
               private authenticationService: AuthApiService,
   ) { }
-
-  getToken(): string {
-    return this.$localStorage.retrieve(LocalStorageEnum.TOKEN) || this.$sessionStorage.retrieve(LocalStorageEnum.TOKEN) || '';
-  }
 
   login(body: LoginRequest): Observable<void> {
     return this.authenticationService.authenticateUser(body).
@@ -29,16 +22,15 @@ export class AuthJwtService {
   }
 
   logout(): void {
-    this.$localStorage.clear(LocalStorageEnum.TOKEN);
+    localStorage.removeItem(LocalStorageEnum.TOKEN);
+    localStorage.removeItem(LocalStorageEnum.DATA_USER);
     localStorage.removeItem(LocalStorageEnum.LANGUAGE);
     this.router.navigate(['']).then();
   }
 
   private authenticateSuccess(response: JwtAuthenticationResponse): void {
-    const jwt = response.accessToken;
-    const data = response.data;
-    this.$localStorage.store(LocalStorageEnum.TOKEN, jwt);
-    this.$localStorage.store(LocalStorageEnum.DATA_USER, data);
+    localStorage.setItem(LocalStorageEnum.TOKEN, response.accessToken);
+    localStorage.setItem(LocalStorageEnum.DATA_USER, JSON.stringify(response.data));
   }
 
 }

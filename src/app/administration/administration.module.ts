@@ -11,7 +11,7 @@ import {FormsModule} from '@angular/forms';
 import {NgxTypedJsModule} from 'ngx-typed-js';
 import {SelectDropDownModule} from 'ngx-select-dropdown';
 import {CarouselModule} from 'ngx-owl-carousel-o';
-
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import {CarouselModule} from 'ngx-owl-carousel-o';
     NgxTypedJsModule,
     FormsModule,
     NgxPaginationModule,
-    AdministrationRoutingModule
+    AdministrationRoutingModule,
+    TranslateModule
   ]
 })
 export class AdministrationModule { }

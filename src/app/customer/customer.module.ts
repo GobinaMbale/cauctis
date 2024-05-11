@@ -8,6 +8,7 @@ import {NavbarStyleOneComponent} from './common/navbar-style-one/navbar-style-on
 import {ReactiveFormsModule} from '@angular/forms';
 import {SignInComponent} from './sign-in/sign-in.component';
 import {SharedModule} from '../shared/shared.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {SharedModule} from '../shared/shared.module';
     CommonModule,
     ReactiveFormsModule,
     CustomerRoutingModule,
-    SharedModule
+    SharedModule,
+    TranslateModule
   ]
 })
 export class CustomerModule { }

@@ -1,0 +1,20 @@
+{
+  "sideMenu": {
+    "dashboard": "Tableau de bord",
+    "users": "Utilisateurs",
+    "structures": "Structures",
+    "profile_user": "Mon Profil",
+    "shops": "Magasins",
+    "lots": "Lots",
+    "articles": "Articles",
+    "auctions": "Enchères",
+    "logout": "Déconnexion"
+  },
+  "navBar": {
+    "home": "Accueil",
+    "auctions": "Enchères",
+    "shops": "Magasins",
+    "about_us": "A propos",
+    "contact": "Contact"
+  }
+}

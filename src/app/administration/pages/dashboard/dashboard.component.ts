@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {LocalStorageService} from 'ngx-webstorage';
 import {SignUpRequest} from '../../../../gs-api/src/models/sign-up-request';
 import {LocalStorageEnum} from '../../../shared/enums/local-storage.enum';
 
@@ -18,10 +17,8 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
-  constructor(private $localStorage: LocalStorageService) { }
-
   ngOnInit(): void {
-    this.data = this.$localStorage.retrieve(LocalStorageEnum.DATA_USER);
+    this.data = JSON.parse(localStorage.getItem(LocalStorageEnum.DATA_USER)) as SignUpRequest;
   }
 
 }
