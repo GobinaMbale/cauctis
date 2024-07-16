@@ -27,133 +27,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-// enfant.service.ts
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+calculateIbanCheckDigits(iban: string): string {
+    iban = iban.replace(/\s+/g, '').toUpperCase();
+    const rearrangedIban = iban.slice(4) + iban.slice(0, 4);
+    const numericIban = rearrangedIban.split('').map(char => this.convertLetterToNumber(char)).join('');
+    const remainder = this.mod97(numericIban);
+    const checkDigits = 98 - remainder;
 
-@Injectable({
-  providedIn: 'root'
-})
-export class EnfantService {
-  private childrenData = new BehaviorSubject<any[]>([]);
-  childrenData$ = this.childrenData.asObservable();
-
-  addChildData(childData: any) {
-    const currentData = this.childrenData.value;
-    this.childrenData.next([...currentData, childData]);
+    return checkDigits.toString().padStart(2, '0');
   }
 
-  updateChildData(index: number, childData: any) {
-    const currentData = this.childrenData.value;
-    currentData[index] = childData;
-    this.childrenData.next([...currentData]);
+  generateIbanWithCheckDigits(iban: string): string {
+    const ibanWithTemporaryCheckDigits = iban.slice(0, 2) + '00' + iban.slice(4);
+    const checkDigits = this.calculateIbanCheckDigits(ibanWithTemporaryCheckDigits);
+    const finalIban = iban.slice(0, 2) + checkDigits + iban.slice(4);
+
+    return finalIban;
   }
 
-  deleteChildData(index: number) {
-    const currentData = this.childrenData.value;
-    currentData.splice(index, 1);
-    this.childrenData.next([...currentData]);
-  }
-
-  getChildrenData() {
-    return this.childrenData.value;
-  }
-}
-
-
-// family-form.component.ts
-import { Component } from '@angular/core';
-import { EnfantService } from '../enfant.service';
-
-@Component({
-  selector: 'app-family-form',
-  templateUrl: './family-form.component.html'
-})
-export class FamilyFormComponent {
-  childrenCount = 0;
-  maxChildren = 20;
-
-  constructor(private enfantService: EnfantService) {}
-
-  get childrenArray() {
-    return new Array(this.childrenCount);
-  }
-
-  addChild() {
-    if (this.childrenCount < this.maxChildren) {
-      this.childrenCount++;
-      this.enfantService.addChildData({ name: '', age: '', gender: '' });
-    } else {
-      console.log("Le nombre maximum d'enfants est atteint.");
+  mod97(input: string): number {
+    let checksum = 0;
+    for (let i = 0; i < input.length; i++) {
+      const digit = input[i];
+      checksum = (checksum * 10 + parseInt(digit, 10)) % 97;
     }
+    return checksum;
   }
-
-  deleteChild(index: number) {
-    this.enfantService.deleteChildData(index);
-    this.childrenCount--;
-  }
-
-  logChildrenData() {
-    console.log(this.enfantService.getChildrenData());
-  }
-}
-
-
-<div>
-  <h1>Famille</h1>
-  <button (click)="addChild()">Ajouter un enfant</button>
-  <div *ngFor="let child of childrenArray; let i = index">
-    <app-child-form [index]="i" (deleteChild)="deleteChild(i)"></app-child-form>
-  </div>
-  <button (click)="logChildrenData()">Voir les données</button>
-</div>
-
-
-
-// child-form.component.ts
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { EnfantService } from '../enfant.service';
-
-@Component({
-  selector: 'app-child-form',
-  templateUrl: './child-form.component.html'
-})
-export class ChildFormComponent implements OnInit {
-  @Input() index: number;
-  @Output() deleteChild = new EventEmitter<void>();
-  childForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private enfantService: EnfantService) {
-    this.childForm = this.fb.group({
-      name: [''],
-      age: [''],
-      gender: ['']
-    });
-  }
-
-  ngOnInit() {
-    this.childForm.valueChanges.subscribe(value => {
-      this.enfantService.updateChildData(this.index, value);
-    });
-  }
-
-  onDelete() {
-    this.deleteChild.emit();
-  }
-}
-
-
-<div [formGroup]="childForm">
-  <h2>Enfant {{ index + 1 }}</h2>
-  <label for="name-{{index}}">Nom:</label>
-  <input id="name-{{index}}" formControlName="name" />
-
-  <label for="age-{{index}}">Âge:</label>
-  <input id="age-{{index}}" formControlName="age" type="number" />
-
-  <label for="gender-{{index}}">Sexe:</label>
-  <input id="gender-{{index}}" formControlName="gender" />
-
-  <button type="button" (click)="onDelete()">Supprimer</button>
-</div>
